@@ -4,17 +4,70 @@
  */
 package inf3n212.carro;
 
+import controller.CCarro;
+import controller.CPessoa;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  *
  * @author 181910101
  */
 public class INF3N212Carro {
 
+    public static CPessoa cadPessoa = new CPessoa();
+    public static CCarro cadCarro = new CCarro();
+    static Scanner leia = new Scanner(System.in);
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        cadPessoa.mockPessoas();
+        cadCarro.mockCarros();
+
+        System.out.println(cadPessoa.getPessoas());
+        System.out.println("---");
+        System.out.println(cadCarro.getCarros());
+
+    }//Fim método main
+
+    public static int leiaNumInt() {
+        Scanner leiaNum = new Scanner(System.in);
+        try {
+            return leiaNum.nextInt();
+        } catch (InputMismatchException i) {
+            System.out.println("Erro: " + i.getMessage() + "\nTente novamente!");
+            leiaNumInt();
+        }
+        return 99;
     }
-    
-}
+
+    public static void menuP() {
+        System.out.println("-- Menu Principal --");
+        System.out.println("1- Ger.Pessoa");
+        System.out.println("2- Ger.Carro");
+        System.out.println("0- Sair");
+        System.out.println("Digite aqui: ");
+    }//Fim menuP
+
+    public static void subMenu(int opM) {
+        String subM = null;
+        if (opM == 1) {
+            subM = "Pessoa";
+        }
+        if (opM == 2) {
+            subM = "Carro";
+        }
+
+        System.out.println("-- Ger. " + subM + " --");
+        System.out.println("1 - Cadastrar " + subM);
+        System.out.println("2 - Editar " + subM);
+        System.out.println("3 - Listar " + subM);
+        System.out.println("4 - Deltear " + subM);
+        System.out.println("0 - Voltar");
+        System.out.println("Digite aqui: ");
+    }//fim subMenu
+
+}//Fim classe
